@@ -14,4 +14,8 @@ public interface BookDao {
 	
 	// 상세 
 	BookVO detail(BookVO bookVO);
+
+	int update(BookVO bookVO);
+
+	int delete(BookVO bookVO);
 }

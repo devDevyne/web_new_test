@@ -6,24 +6,19 @@
 </head>
 <body>
 	<h1>책 상세</h1>
-	<p>제목 : ${ bookDetailVO.title }</p>
-	<p>카테고리 : ${ bookDetailVO.category }</p>
+	<p>제목 : ${ detailBookVO.title }</p>
+	<p>카테고리 : ${ detailBookVO.category }</p>
 	<p>
 		가격 :
 		<fmt:formatNumber type="number" maxFractionDigits="3"
-			value="${ bookDetailVO.price}" />
-	</p>
-	<p>
-		입력일 :
-		<fmt:formatDate value="${ bookDetailVO.insert_date }"
-			pattern="yyyy.MM.dd HH:mm:ss" />
+			value="${ detailBookVO.price}" />
 	</p>
 
 	<p>
-		<a href="/update?bookId=${bookId}">수정</a>
+		<a href="/update?bookId=${bookId }">수정</a>
 	</p>
 	<form method="POST" action="/delete">
-		<input type="hidden" name="bookId" value="${bookId}" /> <input
+		<input type="hidden" name="bookId" value="${bookId }" /> <input
 			type="submit" value="삭제" />
 	</form>
 	<p>

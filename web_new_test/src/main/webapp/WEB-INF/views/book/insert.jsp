@@ -5,7 +5,7 @@
 </head>
 <body>
 	<h1>책 생성하기</h1>
-	<form method="POST" action="/insBook">
+	<form method="post" action="/insBook">
 		<p>
 			제목 : <input type="text" name="title" />
 		</p>

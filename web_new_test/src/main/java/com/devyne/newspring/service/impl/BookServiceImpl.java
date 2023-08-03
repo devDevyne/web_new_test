@@ -28,4 +28,14 @@ public class BookServiceImpl implements BookService {
 	public BookVO detail(BookVO bookVO) {
 		return bookDao.detail(bookVO);
 	}
+	
+	@Override
+	public int update(BookVO bookVO) {
+		return bookDao.update(bookVO);
+	}
+	
+	@Override
+	public int delete(BookVO bookVO) {
+		return bookDao.delete(bookVO);
+	}
 }
