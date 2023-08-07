@@ -7,6 +7,7 @@
 </head>
 <body>
 	<h1>책 목록</h1>
+	<p>${auth } ${username }</p>
 	<table>
 		<thead>
 			<tr>
@@ -18,9 +19,7 @@
 		<tbody>
 			<c:forEach var="row" items="${bookListVO}">
 				<tr>
-					<td><a href="/detail?bookId=${row.bookId}">
-					${row.title}
-					</a></td>
+					<td><a href="/detail?bookId=${row.bookId}"> ${row.title} </a></td>
 					<td>${row.category}</td>
 					<td><fmt:formatNumber type="number" maxFractionDigits="3"
 							value="${row.price}" /></td>
