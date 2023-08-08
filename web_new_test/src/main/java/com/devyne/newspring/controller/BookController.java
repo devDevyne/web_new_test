@@ -18,7 +18,7 @@ import com.devyne.newspring.vo.UserVO;
 
 @Controller
 public class BookController {
-	private Logger logger = LoggerFactory.getLogger(this.getClass().getPackage().getName());
+	private Logger logger = LoggerFactory.getLogger(BookController.class);
 
 	@Autowired
 	BookService bookService;

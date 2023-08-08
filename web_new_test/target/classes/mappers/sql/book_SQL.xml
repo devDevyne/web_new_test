@@ -56,5 +56,5 @@
 		where bookId = #{bookId}
 	]]>
 	</delete>
-
+	
 </mapper>

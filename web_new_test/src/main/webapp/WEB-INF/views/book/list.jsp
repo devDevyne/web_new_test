@@ -4,11 +4,19 @@
 <html>
 <head>
 <title>책 목록</title>
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
 	<h1>책 목록</h1>
-	<p>${auth } ${username }</p>
-	<table>
+	<p>${auth }${username }</p>
+	<form action="/logout" method="get">
+		<input value="로그아웃" type="submit">
+	</form>
+	<table id="booklist" class="booklist">
 		<thead>
 			<tr>
 				<td>제목</td>
@@ -31,4 +39,9 @@
 		<a href="/insert">생성</a>
 	</p>
 </body>
+<script>
+	$(document).ready(function() {
+		$('#booklist').DataTable();
+	});
+</script>
 </html>

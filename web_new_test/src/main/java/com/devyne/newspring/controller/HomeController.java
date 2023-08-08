@@ -26,10 +26,4 @@ public class HomeController {
 
 		return "redirect:/list";
 	}
-
-	@RequestMapping(value = "/auth/accessDenied")
-	public String accessDeniedPage() throws Exception {
-		return "/auth/accessDenied";
-	}
-
 }

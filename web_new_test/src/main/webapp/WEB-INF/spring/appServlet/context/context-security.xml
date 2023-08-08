@@ -2,12 +2,16 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
 
 	<!-- resorcews 폴더 안에 있는 파일들은 security 대상이 아니라는 의미 -->
 	<security:http pattern="/resources/**" security="none" />
 	<security:http pattern="/favicon.ico" security="none" />
+	<security:http pattern="/auth/login" security="none" />
 
 
 	<!-- intercept-url : URL에 접근시 필요한 권한 설정. -->
@@ -15,26 +19,39 @@
 	<security:http auto-config='true' use-expressions="true">
 		<security:intercept-url pattern="/list"
 			access="hasAnyRole('ROLE_ADMIN, ROLE_USER, ROLE_GUEST')" />
-			
+
 		<security:intercept-url pattern="/"
 			access="hasAnyRole('ROLE_ADMIN, ROLE_USER, ROLE_GUEST')" />
-			
-		<security:intercept-url pattern="/detail" access="hasAnyRole('ROLE_ADMIN, ROLE_USER')" />
 
-		<security:intercept-url pattern="/insert" access="hasAnyRole('ROLE_ADMIN, ROLE_USER')" />
-	
-		<security:intercept-url pattern="/insBook" access="hasAnyRole('ROLE_ADMIN, ROLE_USER')" />
-		
-		<security:intercept-url pattern="/**" access="hasRole('ROLE_ADMIN')" />
-		
+		<security:intercept-url pattern="/detail"
+			access="hasAnyRole('ROLE_ADMIN, ROLE_USER')" />
+
+		<security:intercept-url pattern="/insert"
+			access="hasAnyRole('ROLE_ADMIN, ROLE_USER')" />
+
+		<security:intercept-url pattern="/insBook"
+			access="hasAnyRole('ROLE_ADMIN, ROLE_USER')" />
+
+		<security:intercept-url pattern="/**"
+			access="hasRole('ROLE_ADMIN')" />
+
+		<security:intercept-url pattern="/auth/**"
+			access="isAnonymous()" />
+
 		<security:csrf disabled="true" />
-		
+
 		<security:access-denied-handler
 			error-page="/auth/accessDenied" />
 
-		<!-- <security:form-login username-parameter="userId" password-parameter="userPw" 
-			login-page="/auto/login" default-target-url="/list" /> -->
+		<security:form-login username-parameter="userId"
+			password-parameter="userPw" login-page="/auth/login"
+			
+			authentication-failure-handler-ref="UserLoginFailHandler"
+			authentication-success-handler-ref="UserLoginSuccessHandler" />
+		<!-- 로그인 실패 시 -->
 
+		<security:logout logout-url="/logout"
+			logout-success-url="/" />
 
 		<!-- 중복 로그인을 방지하기 위한 설정 -->
 		<!-- <security:session-management> <security:concurrency-control max-sessions="1"/> 
@@ -57,4 +74,8 @@
 		class="com.devyne.newspring.security.UserLoginAuthenticationProvider" />
 	<bean id="UserLoginService"
 		class="com.devyne.newspring.service.UserLoginService" />
+	<bean id="UserLoginFailHandler"
+		class="com.devyne.newspring.security.UserLoginFailHandler" />
+	<bean id="UserLoginSuccessHandler"
+		class="com.devyne.newspring.security.UserLoginSuccessHandler" />
 </beans>
