@@ -15,14 +15,14 @@
 	</p>
 
 	<p>
-		<a href="/update?bookId=${bookId }">수정</a>
+		<a href="/book/update?bookId=${bookId }">수정</a>
 	</p>
-	<form method="POST" action="/delete">
+	<form method="POST" action="/book/delete">
 		<input type="hidden" name="bookId" value="${bookId }" /> <input
 			type="submit" value="삭제" />
 	</form>
 	<p>
-		<a href="/list">목록으로</a>
+		<a href="/book/list">목록으로</a>
 	</p>
 </body>
 </html>

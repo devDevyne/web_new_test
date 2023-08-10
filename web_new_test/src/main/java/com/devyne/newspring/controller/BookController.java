@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.devyne.newspring.service.BookService;
 import com.devyne.newspring.vo.BookVO;
@@ -23,18 +24,16 @@ public class BookController {
 	@Autowired
 	BookService bookService;
 
-	@GetMapping(value = "/list")
+	@GetMapping(value = "/book/list")
 	public String list(Model model, BookVO bookVO, Authentication authentication) {
 		logger.info("====================== 책 리스트 페이지 ======================");
 		List<BookVO> bookListVO = bookService.list(bookVO);
 		model.addAttribute("bookListVO", bookListVO);
 		
 		UserVO userVO = (UserVO) authentication.getPrincipal();
-		
 		model.addAttribute("username", userVO.getName());
 		
 		String auth = userVO.getAuthorities().toString();
-		
 		if(auth.contains("ROLE_ADMIN")) {
 			model.addAttribute("auth", "관리자");
 		} else if(auth.contains("ROLE_USER")) {
@@ -45,25 +44,33 @@ public class BookController {
 		
 		return "book/list";
 	}
+	
+	@GetMapping(value = "bookList")
+	@ResponseBody
+	public List<BookVO> bookList(BookVO bookVO) {
+		List<BookVO> bookList = bookService.list(bookVO);
+		return bookList;
+	}
+	
 
 	// 등록 페이지
-	@GetMapping(value = "/insert")
+	@GetMapping(value = "/book/insert")
 	public String insert(Model model, BookVO bookVO) {
 		logger.info("====================== 책 정보 등록 페이지 ======================");
 		return "book/insert";
 	}
 
 	// 등록 처리
-	@PostMapping(value = "/insBook")
+	@PostMapping(value = "/book/insBook")
 	public String insBook(Model model, BookVO bookVO) {
 		logger.info("====================== 책 정보 등록 처리 ======================");
 		int book_insert = bookService.insert(bookVO);
 
-		return "redirect:list";
+		return "redirect:/book/list";
 	}
 
 	// 상세 책 정보
-	@GetMapping(value = "/detail")
+	@GetMapping(value = "/book/detail")
 	public String detail(Model model, BookVO bookVO) {
 		logger.info("====================== 책 상세 정보 ======================");
 		BookVO detailBookVO = bookService.detail(bookVO);
@@ -75,7 +82,7 @@ public class BookController {
 	}
 
 	// 책 정보 수정 페이지
-	@GetMapping(value = "/update")
+	@GetMapping(value = "/book/update")
 	public String update(Model model, BookVO bookVO) {
 		logger.info("====================== 책 정보 수정 페이지 ======================");
 		BookVO detailBookVO = bookService.detail(bookVO);
@@ -85,21 +92,21 @@ public class BookController {
 	}
 
 	// 책 정보 수정 처리
-	@PostMapping(value = "/udtBook")
+	@PostMapping(value = "/book/udtBook")
 	public String udtBook(Model model, BookVO bookVO) {
 		logger.info("====================== 책 정보 수정 처리 ======================");
 		int update = bookService.update(bookVO);
 
-		return "redirect:detail?bookId=" + bookVO.getBookId();
+		return "redirect:/book/detail?bookId=" + bookVO.getBookId();
 	}
 
 	// 책 정보 삭제
-	@PostMapping(value = "/delete")
+	@PostMapping(value = "/book/delete")
 	public String delete(Model model, BookVO bookVO) {
 		logger.info("====================== 책 정보 삭제 ======================");
 		int delete = bookService.delete(bookVO);
 
-		return "redirect:/list";
+		return "redirect:/book/list";
 	}
 
 };

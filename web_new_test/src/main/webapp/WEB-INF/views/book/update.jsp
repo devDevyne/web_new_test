@@ -5,7 +5,7 @@
 </head>
 <body>
 	<h1>책 수정</h1>
-	<form method="POST" action="/udtBook">
+	<form method="POST" action="/book/udtBook">
 		<p>
 			제목 : <input type="text" name="title" value="${ detailBookVO.title }" />
 		</p>

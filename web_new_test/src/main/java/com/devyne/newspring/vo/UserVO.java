@@ -5,9 +5,13 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import lombok.Data;
 
+@Data
 public class UserVO implements UserDetails {
 	private static final long serialVersionUID = 4295715898628835754L;
+	
+	private int userId; //auto_increment
 	private String name;
 	private String email;
 	private String passwd;

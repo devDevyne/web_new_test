@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.devyne.newspring.dao.UserLoginDao">
+<mapper namespace="com.devyne.newspring.dao.UserDao">
 
-	<select id="member_Info" parameterType="String" resultType="UserVO">
+	<select id="member_Info" parameterType="String" resultType="userVO">
 		<![CDATA[
 		select 
 		*
@@ -11,5 +11,27 @@
 		where
 		email = #{email}		
 		]]>		
+	</select>
+	
+	<!-- 등록 -->
+	<insert id="user_create" parameterType="userVO">
+		INSERT INTO Users (name, email, passwd, auth) VALUES (#{name}, #{email}, #{passwd}, #{auth})
+	</insert>
+	
+	<!-- 이메일 중복 확인 -->
+	<!-- 사용자가 유저 추가 시 입력한 이메일 data를 parameter로 갖고와 중복 확인 -->
+	<!-- 동일한 이메일 수(count)를 쿼리 결과값으로 -->
+	<select id="check_email" parameterType="String" resultType="int">
+		SELECT count(*) FROM Users WHERE email=#{email}
+	</select>
+	
+	<!-- 유저 리스트 -->
+	<select id="user_list" parameterType="userVO" resultType="userVO">
+		SELECT userId, name, email, auth FROM Users
+	</select>
+	
+	<!-- 유저 상세정보 -->
+	<select id="user_details" parameterType="userVO" resultType="userVO">
+		SELECT userId, name, email, auth FROM Users WHERE userId=#{userId}
 	</select>
 </mapper>

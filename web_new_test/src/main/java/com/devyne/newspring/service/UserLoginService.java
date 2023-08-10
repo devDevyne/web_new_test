@@ -10,22 +10,22 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.devyne.newspring.dao.UserLoginDao;
+import com.devyne.newspring.dao.UserDao;
 import com.devyne.newspring.vo.UserVO;
 
 @Service
 public class UserLoginService implements UserDetailsService {
-
+	
 	@Autowired
-	UserLoginDao userLoginDao;
-
+	UserDao userDao;
+	
 	@Override
 	public UserVO loadUserByUsername(String email) throws UsernameNotFoundException {
 
 		UserVO userDetails = new UserVO();
 
 		try {
-			UserVO userInfo = userLoginDao.memberInfo(email); // email을 통해 user 정보 가져오기.
+			UserVO userInfo = userDao.memberInfo(email); // email을 통해 user 정보 가져오기.
 
 			if (userInfo == null) {
 				return null;
