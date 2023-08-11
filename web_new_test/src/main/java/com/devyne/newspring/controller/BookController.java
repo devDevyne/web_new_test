@@ -1,6 +1,5 @@
 package com.devyne.newspring.controller;
 
-
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -29,29 +28,28 @@ public class BookController {
 		logger.info("====================== 책 리스트 페이지 ======================");
 		List<BookVO> bookListVO = bookService.list(bookVO);
 		model.addAttribute("bookListVO", bookListVO);
-		
+
 		UserVO userVO = (UserVO) authentication.getPrincipal();
 		model.addAttribute("username", userVO.getName());
-		
+
 		String auth = userVO.getAuthorities().toString();
-		if(auth.contains("ROLE_ADMIN")) {
+		if (auth.contains("ROLE_ADMIN")) {
 			model.addAttribute("auth", "관리자");
-		} else if(auth.contains("ROLE_USER")) {
+		} else if (auth.contains("ROLE_USER")) {
 			model.addAttribute("auth", "멤버");
-		} else if(auth.contains("ROLE_GUEST")) {
+		} else if (auth.contains("ROLE_GUEST")) {
 			model.addAttribute("auth", "게스트");
 		}
-		
+
 		return "book/list";
 	}
-	
+
 	@GetMapping(value = "bookList")
 	@ResponseBody
 	public List<BookVO> bookList(BookVO bookVO) {
 		List<BookVO> bookList = bookService.list(bookVO);
 		return bookList;
 	}
-	
 
 	// 등록 페이지
 	@GetMapping(value = "/book/insert")

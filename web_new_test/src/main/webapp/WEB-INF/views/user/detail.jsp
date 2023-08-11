@@ -13,8 +13,11 @@
 	<h1>유저 상세정보</h1>
 	<div>
 		<sec:authorize access="hasRole('ROLE_ADMIN')">
-			<button type="button">수정</button>
-			<button type="button">삭제</button>
+			<button type="button" onclick="location.href='/user/update?userId=${userDetails.userId }'">수정</button>
+			<form method="POST" action="/user/delete">
+				<input type="submit" value="삭제" />
+				<input type="hidden" name="userId" value="${userDetails.userId }" />
+			</form>
 		</sec:authorize>
 	</div>
 	<p>이름 : ${userDetails.name }</p>

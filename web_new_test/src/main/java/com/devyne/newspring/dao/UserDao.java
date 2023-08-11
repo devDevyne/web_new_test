@@ -15,5 +15,9 @@ public interface UserDao {
 	List<UserVO> userList(UserVO userVO);
 
 	UserVO userDetails(UserVO userVO);
+
+	int userUpdate(UserVO userVO);
+
+	int userDelete(UserVO userVO);
 	
 }

@@ -14,4 +14,8 @@ public interface UserService {
 
 	UserVO userDetails(UserVO userVO);
 
+	int userUpdate(UserVO userVO);
+
+	int userDelete(UserVO userVO);
+
 }

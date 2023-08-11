@@ -15,10 +15,10 @@
 
 
 	<!-- intercept-url : URL에 접근시 필요한 권한 설정. -->
-	
+
 
 	<security:http auto-config='true' use-expressions="true">
-	
+
 		<security:intercept-url pattern="/book/list"
 			access="hasAnyRole('ROLE_ADMIN, ROLE_USER, ROLE_GUEST')" />
 
@@ -27,15 +27,12 @@
 
 		<security:intercept-url pattern="/book/**"
 			access="hasAnyRole('ROLE_ADMIN, ROLE_USER')" />
-			
-		<security:intercept-url pattern="/user/**" 
-			access="hasAnyRole('ROLE_ADMIN, ROLE_USER')" />
-<!-- 
-		<security:intercept-url pattern="/book/insert"
-			access="hasAnyRole('ROLE_ADMIN, ROLE_USER')" />
 
-		<security:intercept-url pattern="/book/insBook"
-			access="hasAnyRole('ROLE_ADMIN, ROLE_USER')" /> -->
+		<security:intercept-url pattern="/user/**"
+			access="hasAnyRole('ROLE_ADMIN, ROLE_USER')" />
+		<!-- <security:intercept-url pattern="/book/insert" access="hasAnyRole('ROLE_ADMIN, 
+			ROLE_USER')" /> <security:intercept-url pattern="/book/insBook" access="hasAnyRole('ROLE_ADMIN, 
+			ROLE_USER')" /> -->
 
 		<security:intercept-url pattern="/**"
 			access="hasRole('ROLE_ADMIN')" />
@@ -43,7 +40,7 @@
 		<security:intercept-url pattern="/auth/**"
 			access="isAnonymous()" />
 
-	
+
 		<security:csrf disabled="true" />
 
 		<security:access-denied-handler
@@ -51,7 +48,7 @@
 
 		<security:form-login username-parameter="userId"
 			password-parameter="userPw" login-page="/auth/login"
-			
+
 			authentication-failure-handler-ref="UserLoginFailHandler"
 			authentication-success-handler-ref="UserLoginSuccessHandler" />
 		<!-- 로그인 실패 시 -->

@@ -34,4 +34,14 @@ public class UserServiceImpl implements UserService {
 	public UserVO userDetails(UserVO userVO) {
 		return userDao.userDetails(userVO);
 	}
+	
+	@Override
+	public int userUpdate(UserVO userVO) {
+		return userDao.userUpdate(userVO);
+	}
+	
+	@Override
+	public int userDelete(UserVO userVO) {
+		return userDao.userDelete(userVO);
+	}
 }

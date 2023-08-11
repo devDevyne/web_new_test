@@ -9,14 +9,13 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet"
-	href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.cs" />
+	href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script
 	src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script>
 	$(document).ready(function() {
 		$('#userlist').DataTable({
-			columnDefs: [ { width: 100, targets: "_all" } ]
 		});
 	});
 </script>
@@ -54,6 +53,7 @@
 		<button type="button" onclick="location.href='/user/create'">유저
 			등록</button>
 	</sec:authorize>
-	<button type="button" onclick="location.href='/book/list'">북 리스트</button>
+	<button type="button" onclick="location.href='/book/list'">북
+		리스트</button>
 </body>
 </html>

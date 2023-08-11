@@ -8,6 +8,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Service;
 
 import com.devyne.newspring.dao.UserDao;
@@ -19,6 +21,7 @@ public class UserLoginService implements UserDetailsService {
 	@Autowired
 	UserDao userDao;
 	
+	// loadUserByUsername 메소드를 통해 DB에서 사용자 정보를 가져와 권한을 부여. 
 	@Override
 	public UserVO loadUserByUsername(String email) throws UsernameNotFoundException {
 
@@ -35,6 +38,7 @@ public class UserLoginService implements UserDetailsService {
 				userDetails.setName(userInfo.getName()); // name
 				userDetails.setUsername(userInfo.getUsername()); // email
 				userDetails.setPassword(userInfo.getPassword()); // password
+				userDetails.setAuth(userInfo.getAuth());
 
 				// auth에 value에 따라 접근 권한 부여
 				if ("guest".equals(userInfo.getAuth())) {

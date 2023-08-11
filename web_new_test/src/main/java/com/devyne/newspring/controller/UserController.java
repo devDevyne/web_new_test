@@ -66,4 +66,25 @@ public class UserController {
 		model.addAttribute("userDetails", userDetails);
 		return "/user/detail";
 	}
+	
+	@GetMapping(value = "/user/update")
+	public String userUpdate(Model model, UserVO userVO) {
+		UserVO userDetails = userService.userDetails(userVO);
+		String auth = userDetails.getAuth();
+		model.addAttribute("userDetails", userDetails);
+		model.addAttribute("auth", auth);
+		return "user/update";
+	}
+	
+	@PostMapping(value = "/user/udtUser")
+	public String udtUser(Model model, UserVO userVO) {
+		int update = userService.userUpdate(userVO);
+		return "redirect:/user/detail?userId=" + userVO.getUserId();
+	}
+	
+	@PostMapping(value = "/user/delete")
+	public String delUser(Model model, UserVO userVO) {
+		int delete = userService.userDelete(userVO);
+		return "redirect:/user/list";
+	}
 }

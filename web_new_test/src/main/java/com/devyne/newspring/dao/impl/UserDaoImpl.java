@@ -39,4 +39,14 @@ public class UserDaoImpl implements UserDao {
 	public UserVO userDetails(UserVO userVO) {
 		return sqlSession.selectOne("user_details", userVO);
 	}
+	
+	@Override
+	public int userUpdate(UserVO userVO) {
+		return sqlSession.update("user_update", userVO);
+	}
+	
+	@Override
+	public int userDelete(UserVO userVO) {
+		return sqlSession.delete("user_delete", userVO);
+	}
 }

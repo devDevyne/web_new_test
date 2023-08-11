@@ -16,12 +16,13 @@
 				"email" : email
 			// "변수" : 변수 value
 			},
-			success : function(data) {
+			success : function(result) {
 				// 데이터 전송이 성공적으로 끝났을 때 
 				if (email != "") {
-					if (data == "Y") {
+					if (result == "Y") {
 						alert("사용 가능한 이메일입니다.");
 						$('#register').removeAttr('disabled');
+						$('#email').attr('disabled', true);
 					} else {
 						alert("이미 사용중인 이메일입니다.");
 					}
@@ -59,7 +60,7 @@
 		</p>
 		<p>
 			<input type="submit" id="register" disabled value="등록" />
-			<input type="reset" value="리셋" />
+			<!-- <input type="reset" value="리셋" id="reset" /> -->
 			<button type="button" onclick="location.href='/user/list'">취소</button>
 	</form>
 </body>

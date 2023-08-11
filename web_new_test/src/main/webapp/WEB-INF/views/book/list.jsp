@@ -6,7 +6,8 @@
 <html>
 <head>
 <title>책 목록</title>
-<link rel="stylesheet" href="https://uicdn.toast.com/grid/latest/tui-grid.css" />
+<link rel="stylesheet"
+	href="https://uicdn.toast.com/grid/latest/tui-grid.css" />
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://uicdn.toast.com/grid/latest/tui-grid.js"></script>
 </head>
@@ -46,7 +47,7 @@
 	<p>
 		<button type="button" onclick="location.href='/book/insert'">생성</button>
 	</p>
-	<div id="grid"></div>
+	<div id="grid" style="width: 700px;"></div>
 	<script>
 		const grid = new tui.Grid({
 			el: document.getElementById('grid'),
@@ -63,14 +64,19 @@
 					header: '가격',
 					name: 'price'
 				}
-			]
+			],
 		});
 		
+		
 		$.ajax({
-			url: "bookList",
-			type: "get",
-			
+			url: "/bookList",
+			method: "GET",
+			dataType: "JSON",
+			success : function(result) {
+				grid.resetData(result);
+			}
 		});
 	</script>
 </body>
 </html>
+ 

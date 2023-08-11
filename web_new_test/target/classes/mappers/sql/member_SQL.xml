@@ -34,4 +34,22 @@
 	<select id="user_details" parameterType="userVO" resultType="userVO">
 		SELECT userId, name, email, auth FROM Users WHERE userId=#{userId}
 	</select>
+	
+	<!-- 유저 정보 업데이트 -->
+	<update id="user_update" parameterType="userVO">
+		<![CDATA[ 
+		update Users 
+		set 
+		name = #{name},
+		auth = #{auth}
+		where
+		userId = #{userId}
+	]]>
+	</update>
+	
+	<!-- 유저 삭제 -->
+	<delete id="user_delete" parameterType="userVO">
+		DELETE FROM Users WHERE userId = #{userId}
+	</delete>
+	
 </mapper>

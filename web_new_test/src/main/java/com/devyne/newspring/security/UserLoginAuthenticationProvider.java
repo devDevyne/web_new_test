@@ -18,6 +18,8 @@ public class UserLoginAuthenticationProvider implements AuthenticationProvider {
 	@Autowired
 	UserLoginService userLoginService;
 
+	// userLoginService에서 가져온 사용자 정보를 화면에서 가져온 로그인 정보와 비교. 
+	// 인증이 성공하면 authentication 객체를 생성해 이를 리턴. 
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 
@@ -36,7 +38,7 @@ public class UserLoginAuthenticationProvider implements AuthenticationProvider {
 			throw new DisabledException(userId);
 		}
 
-		// 계정이 인증되었다면, token 객체에 입력한 정보와 부여된 권한을 리턴.
+		// 계정이 인증되었다면, token 객체에 입력한 정보(아이디, pw)와 부여된 권한을 리턴.
 //		return new UsernamePasswordAuthenticationToken(userId, userPw, userDetails.getAuthorities());
 		return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 	}
