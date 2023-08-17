@@ -23,7 +23,11 @@
 		<button type="button" onclick="location.href='/user/list'">유저
 			리스트</button>
 	</sec:authorize>
-
+	<div>
+		<button type="button" class="booklist_excel_download_btn"
+			id="excel_download_btn" onclick="location.href='/bookList_excel'">엑셀
+			다운로드</button>
+	</div>
 	<table id="booklist" class="booklist">
 		<thead>
 			<tr>
@@ -50,28 +54,23 @@
 	<div id="grid" style="width: 700px;"></div>
 	<script>
 		const grid = new tui.Grid({
-			el: document.getElementById('grid'),
-			columns: [
-				{
-					header: '제목',
-					name: 'title'
-				},
-				{
-					header: '카테고리',
-					name: 'category'
-				},
-				{
-					header: '가격',
-					name: 'price'
-				}
-			],
+			el : document.getElementById('grid'),
+			columns : [ {
+				header : '제목',
+				name : 'title'
+			}, {
+				header : '카테고리',
+				name : 'category'
+			}, {
+				header : '가격',
+				name : 'price'
+			} ],
 		});
-		
-		
+
 		$.ajax({
-			url: "/bookList",
-			method: "GET",
-			dataType: "JSON",
+			url : "/bookList",
+			method : "GET",
+			dataType : "JSON",
 			success : function(result) {
 				grid.resetData(result);
 			}
@@ -79,4 +78,3 @@
 	</script>
 </body>
 </html>
- 

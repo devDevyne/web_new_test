@@ -2,6 +2,8 @@ package com.devyne.newspring.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +51,13 @@ public class BookController {
 	public List<BookVO> bookList(BookVO bookVO) {
 		List<BookVO> bookList = bookService.list(bookVO);
 		return bookList;
+	}
+	
+	@PostMapping(value = "excel_booklist")
+	@ResponseBody
+	public void excel_download_bookList(HttpServletResponse response, BookVO bookVO) {
+		List<BookVO> bookList = bookService.list(bookVO);
+		
 	}
 
 	// 등록 페이지
