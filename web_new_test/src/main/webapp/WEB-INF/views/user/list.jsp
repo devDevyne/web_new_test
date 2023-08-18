@@ -15,14 +15,16 @@
 	src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script>
 	$(document).ready(function() {
-		$('#userlist').DataTable({
-		});
+		$('#userlist').DataTable({});
 	});
 </script>
 <title>유저 리스트</title>
 </head>
 <body>
 	<h1>유저 목록</h1>
+	<div>
+		<button type="button" onclick="location.href='/userList_excel'">엑셀 다운로드</button>
+	</div>
 	<table id="userlist" class="userlist">
 		<thead>
 			<tr>
