@@ -44,4 +44,10 @@ public class UserServiceImpl implements UserService {
 	public int userDelete(UserVO userVO) {
 		return userDao.userDelete(userVO);
 	}
+	
+	@Override 
+	public int userSignUp(UserVO userVO) { 
+		return userDao.userSignUp(userVO);
+	}
+	 
 }

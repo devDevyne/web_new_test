@@ -19,5 +19,7 @@ public interface UserDao {
 	int userUpdate(UserVO userVO);
 
 	int userDelete(UserVO userVO);
+
+	int userSignUp(UserVO userVO);
 	
 }

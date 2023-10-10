@@ -62,6 +62,7 @@
 			<input type="submit" id="register" disabled value="등록" />
 			<!-- <input type="reset" value="리셋" id="reset" /> -->
 			<button type="button" onclick="location.href='/user/list'">취소</button>
+		</p>
 	</form>
 </body>
 </html>

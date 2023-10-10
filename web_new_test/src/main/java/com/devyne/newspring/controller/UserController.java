@@ -35,8 +35,18 @@ public class UserController {
 		
 		int user_create =  userService.userCreate(userVO);
 		
+		
 		return "redirect:/user/list";
 		// userlist 나중에 수정. 
+	}
+	
+	@PostMapping("/signUp")
+	public String signUpUser(Model model, UserVO userVO) {
+		logger.info("====================== 신규 유저 등록 처리 ======================");
+		
+		int user_signUp = userService.userSignUp(userVO);
+		
+		return "redirect:/auth/login";
 	}
 	
 

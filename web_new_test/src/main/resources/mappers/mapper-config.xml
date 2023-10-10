@@ -5,5 +5,7 @@
 	<typeAliases>
 		<typeAlias alias="bookVO" type="com.devyne.newspring.vo.BookVO"/>
 		<typeAlias alias="userVO" type="com.devyne.newspring.vo.UserVO"/>
+		<typeAlias alias="weatherVO" type="com.devyne.newspring.vo.WeatherVO"/>
+		<typeAlias alias="dateVO" type="com.devyne.newspring.vo.DateVO"/>
 	</typeAliases>
 </configuration>

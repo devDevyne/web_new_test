@@ -18,6 +18,10 @@
 		INSERT INTO Users (name, email, passwd, auth) VALUES (#{name}, #{email}, #{passwd}, #{auth})
 	</insert>
 	
+	<insert id="signUp" parameterType="userVO">
+		INSERT INTO Users (name, email, passwd) VALUES (#{name}, #{email}, #{passwd})	
+	</insert>
+	
 	<!-- 이메일 중복 확인 -->
 	<!-- 사용자가 유저 추가 시 입력한 이메일 data를 parameter로 갖고와 중복 확인 -->
 	<!-- 동일한 이메일 수(count)를 쿼리 결과값으로 -->

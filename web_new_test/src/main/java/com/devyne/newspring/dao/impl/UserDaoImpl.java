@@ -49,4 +49,9 @@ public class UserDaoImpl implements UserDao {
 	public int userDelete(UserVO userVO) {
 		return sqlSession.delete("user_delete", userVO);
 	}
+	
+	@Override
+	public int userSignUp(UserVO userVO) {
+		return sqlSession.insert("signUp", userVO);
+	}
 }

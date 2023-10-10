@@ -18,4 +18,6 @@ public interface UserService {
 
 	int userDelete(UserVO userVO);
 
+	int userSignUp(UserVO userVO);
+
 }
