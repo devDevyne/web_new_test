@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.devyne.newspring.service.BookService;
@@ -24,6 +26,7 @@ public class BookController {
 
 	@Autowired
 	BookService bookService;
+	
 
 	@GetMapping(value = "/book/list")
 	public String list(Model model, BookVO bookVO, Authentication authentication) {
@@ -115,5 +118,13 @@ public class BookController {
 
 		return "redirect:/book/list";
 	}
-
+	
+	// 책 리스트 테스트
+	@RequestMapping(value = "/book/listOrg")
+	public String listOrg(Model model, BookVO bookVO) {
+		
+		return "/book/listOrg";
+	}
+	
+	
 };
